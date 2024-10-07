@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- Include the CesiumJS JavaScript and CSS files -->
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.122/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.122/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <div id="cesiumContainer"></div>
+  <script type="module">
+    // Tu token de acceso puede encontrarse en: https://ion.cesium.com/tokens.
+    // Sustituye `your_access_token` por tu token de acceso a Cesium ion.
+    
+    // Esta línea está comentada, pero debería activarse si deseas usar un token personalizado.
+    // Cesium.Ion.defaultAccessToken = 'your_access_token';
+
+    // Inicializar el visor de Cesium en el elemento HTML con el ID `cesiumContainer`.
+    // Se pasa como segundo parámetro un objeto de configuración, en este caso especificando
+    // que se utilice el terreno global de Cesium (World Terrain).
+    const viewer = new Cesium.Viewer('cesiumContainer', {
+      terrain: Cesium.Terrain.fromWorldTerrain(),  // Cargar el terreno global
+    });
+
+    // Volar la cámara a Bogotá Calle 49 con Carrera 24 - (4.637823, -74.074688), especificando la longitud, latitud y altura en el método `flyTo`.
+    // `destination` define las coordenadas en grados, con una altura de 3000 metros sobre el nivel del mar.
+    // `orientation` controla la dirección de la cámara: `heading` (rotación horizontal) 
+    // y `pitch` (inclinación hacia abajo)
+    // 
+    viewer.camera.flyTo({
+      destination: Cesium.Cartesian3.fromDegrees(-74.074688,4.637823,3000), // Coordenadas en grados
+      orientation: {
+        heading: Cesium.Math.toRadians(-90.0),  // Dirección hacia el norte
+        pitch: Cesium.Math.toRadians(-30.0),  // Ángulo de inclinación de 30 grados hacia abajo
+      }
+    });
+
+    // Agregar el conjunto de edificios OSM (OpenStreetMap), una capa global en 3D de edificios.
+    // Esta función carga los edificios de manera asíncrona y luego los añade a la escena.
+    const buildingTileset = await Cesium.createOsmBuildingsAsync();
+    
+    // Añadir el conjunto de edificios a la escena del visor como una primitiva.
+    viewer.scene.primitives.add(buildingTileset);   
+  </script>
+ </div>
+</body>
+</html>
