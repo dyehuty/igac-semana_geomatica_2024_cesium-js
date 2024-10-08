@@ -1,6 +1,8 @@
+// GeoJson Editor Online: https://geojson.io/#map=9.54/4.7888/-74.3416
+// 3D viewer Online: https://3dviewer.net/
+// FROM: https://cesium.com/learn/cesiumjs/ref-doc/Cartesian3.html?classFilter=Cartesian3
 import { geoJsonArboles } from './coordenadas.js';
 import { createModel } from './funciones.js';
-// FROM: https://cesium.com/learn/cesiumjs/ref-doc/Cartesian3.html?classFilter=Cartesian3
 //Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3MDlhZTgyYi0yYThlLTQwZjMtYTJjOS1kNWI1NTUzZDllMjUiLCJpZCI6MjQ2MzkyLCJpYXQiOjE3MjgyOTk0MTZ9.t_U2w7IepkCqkfUfKEevoDSJPIZeBUBdEmTXkP8kaf8';
 // Inicializar el visor de Cesium en el elemento HTML con el ID `cesiumContainer`.
 // Se pasa como segundo parámetro un objeto de configuración, en este caso especificando
